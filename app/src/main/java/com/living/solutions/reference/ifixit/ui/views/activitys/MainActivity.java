@@ -1,8 +1,9 @@
-package com.living.solutions.reference.ifixit;
+package com.living.solutions.reference.ifixit.ui.views.activitys;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -13,13 +14,30 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.google.gson.reflect.TypeToken;
+import com.living.solutions.reference.ifixit.IFixitAplication;
+import com.living.solutions.reference.ifixit.R;
+import com.living.solutions.reference.ifixit.ui.contracts.CategorieContracts;
+
+import java.util.Map;
+
+import javax.inject.Inject;
+
 public class MainActivity extends AppCompatActivity
-  implements NavigationView.OnNavigationItemSelectedListener {
+  implements NavigationView.OnNavigationItemSelectedListener, CategorieContracts.ICategorieView {
+
+  @Inject
+  CategorieContracts.ICategoriePresenter mPresenter;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
+    ((IFixitAplication)getApplication()).getComponent().inject(this);
+
+    mPresenter.onBindView(this);
+    mPresenter.getCategories();
+
     Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
     setSupportActionBar(toolbar);
 
@@ -97,5 +115,45 @@ public class MainActivity extends AppCompatActivity
     DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
     drawer.closeDrawer(GravityCompat.START);
     return true;
+  }
+
+  @Override
+  public void setProgressVisibility(int visibityState) {
+
+  }
+
+  @Override
+  public boolean isInternetConnected() {
+    return false;
+  }
+
+  @Override
+  public void onError(int msgID) {
+
+  }
+
+  @Override
+  public boolean isAdded() {
+    return false;
+  }
+
+  @Override
+  public void onErrorNoConnection() {
+
+  }
+
+  @Override
+  public void onErrorInServer() {
+
+  }
+
+  @Override
+  public void onErrorUnexpected() {
+
+  }
+
+  @Override
+  public void updateUICategories(TypeToken<Map<String, String>> categoris) {
+    Log.d("AA", "updateUICategories: " + categoris);
   }
 }
