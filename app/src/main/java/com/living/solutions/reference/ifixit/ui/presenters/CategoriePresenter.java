@@ -6,6 +6,8 @@ import com.google.gson.reflect.TypeToken;
 import com.living.solutions.reference.ifixit.ui.contracts.CategorieContracts;
 
 import java.util.Map;
+import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;
 
@@ -20,9 +22,9 @@ import io.reactivex.disposables.Disposable;
  */
 
 public class CategoriePresenter extends BasePresenter<CategorieContracts.ICategorieView, CategorieContracts.ICategorieInterceptor>
-        implements CategorieContracts.ICategoriePresenter {
+  implements CategorieContracts.ICategoriePresenter {
 
-  @Inject
+
   public CategoriePresenter(CategorieContracts.ICategorieInterceptor mInterceptor, CompositeDisposable mSubscribers) {
     super(mInterceptor, mSubscribers);
   }
@@ -32,28 +34,28 @@ public class CategoriePresenter extends BasePresenter<CategorieContracts.ICatego
     mView.setProgressVisibility(View.VISIBLE);
     if (mView.isInternetConnected()) {
       mInterceptor.getCategories()
-              .observeOn(AndroidSchedulers.mainThread())
-              .subscribe(onCategorieObserver());
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(onCategorieObserver());
     } else {
       onConnectionError();
     }
   }
 
-  private Observer<TypeToken<Map<String, String>>> onCategorieObserver() {
-    return new Observer<TypeToken<Map<String, String>>>() {
+  private Observer<Map<String, Map<String, Object>>> onCategorieObserver() {
+    return new Observer<Map<String, Map<String, Object>>>() {
       @Override
       public void onSubscribe(@NonNull Disposable d) {
         mSubscribers.add(d);
       }
 
       @Override
-      public void onNext(@NonNull TypeToken<Map<String, String>> mapTypeToken) {
+      public void onNext(@NonNull Map<String, Map<String, Object>> mapTypeToken) {
         mView.updateUICategories(mapTypeToken);
       }
 
       @Override
       public void onError(@NonNull Throwable e) {
-
+        e.printStackTrace();
       }
 
       @Override

@@ -59,7 +59,7 @@ public class IFixitNetModule {
     return new ServerInterceptor();
   }
 
-  @PerFragment
+
   @Provides
   Retrofit provideRetrofit(OkHttpClient okHttpClient, RxJava2CallAdapterFactory adapterFactory) {
     Gson gson = new GsonBuilder().create();
@@ -78,13 +78,13 @@ public class IFixitNetModule {
     return retrofit.create(IiFixitService.class);
   }
 
-  @PerFragment
+
   @Provides
   IFixitMethod provideIFixitMethod(IiFixitService fixitService) {
     return new IFixitMethod(fixitService);
   }
 
-  @PerFragment
+
   @Provides
   RxJava2CallAdapterFactory provideRxJava2CallAdapterFactory() {
     return RxJava2CallAdapterFactory.create();

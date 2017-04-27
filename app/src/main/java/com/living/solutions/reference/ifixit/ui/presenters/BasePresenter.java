@@ -10,7 +10,7 @@ import io.reactivex.disposables.CompositeDisposable;
  * Created by hoanghiep on 4/26/17.
  */
 
-public abstract class BasePresenter <V extends IView, I> implements IPresenter<V> {
+public abstract class BasePresenter<V extends IView, I> implements IPresenter<V> {
   protected V mView;
   protected I mInterceptor;
   protected CompositeDisposable mSubscribers;

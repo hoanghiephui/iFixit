@@ -1,6 +1,5 @@
 package com.living.solutions.reference.ifixit.server.methods;
 
-import com.google.gson.reflect.TypeToken;
 import com.living.solutions.reference.ifixit.server.services.IiFixitService;
 
 import java.util.Map;
@@ -21,7 +20,7 @@ public class IFixitMethod {
     this.fixitService = fixitService;
   }
 
-  public Observable<TypeToken<Map<String, String>>> getCategories() {
+  public Observable<Map<String, Map<String, Object>>> getCategories() {
     return fixitService.getCategories();
   }
 }

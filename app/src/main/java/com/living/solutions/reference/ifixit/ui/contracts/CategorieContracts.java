@@ -1,6 +1,5 @@
 package com.living.solutions.reference.ifixit.ui.contracts;
 
-import com.google.gson.reflect.TypeToken;
 import com.living.solutions.reference.ifixit.ui.presenters.IPresenter;
 import com.living.solutions.reference.ifixit.ui.views.IView;
 
@@ -14,7 +13,7 @@ import io.reactivex.Observable;
 
 public class CategorieContracts {
   public interface ICategorieInterceptor {
-    Observable<TypeToken<Map<String, String>>> getCategories();
+    Observable<Map<String, Map<String, Object>>> getCategories();
   }
 
   public interface ICategoriePresenter extends IPresenter<ICategorieView> {
@@ -22,6 +21,6 @@ public class CategorieContracts {
   }
 
   public interface ICategorieView extends IView {
-    void updateUICategories(TypeToken<Map<String, String>> categoris);
+    void updateUICategories(Map<String, Map<String, Object>> categoris);
   }
 }

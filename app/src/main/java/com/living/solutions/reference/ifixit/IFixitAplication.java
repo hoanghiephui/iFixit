@@ -2,6 +2,7 @@ package com.living.solutions.reference.ifixit;
 
 import android.app.Application;
 
+import com.living.solutions.reference.ifixit.dragger.components.DaggerIfixitComponent;
 import com.living.solutions.reference.ifixit.dragger.components.IfixitComponent;
 import com.living.solutions.reference.ifixit.dragger.modules.ApplicationModule;
 import com.living.solutions.reference.ifixit.dragger.modules.IFixitNetModule;
@@ -17,9 +18,9 @@ public class IFixitAplication extends Application {
   public void onCreate() {
     super.onCreate();
     component = DaggerIfixitComponent.builder()
-            .applicationModule(new ApplicationModule(this))
-            .iFixitNetModule(new IFixitNetModule("https://www.ifixit.com/api/2.0/"))
-            .build();
+      .applicationModule(new ApplicationModule(this))
+      .iFixitNetModule(new IFixitNetModule("https://www.ifixit.com/api/2.0/"))
+      .build();
   }
 
   public IfixitComponent getComponent() {

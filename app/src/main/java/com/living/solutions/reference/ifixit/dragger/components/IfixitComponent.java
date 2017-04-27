@@ -1,6 +1,7 @@
 package com.living.solutions.reference.ifixit.dragger.components;
 
 import com.living.solutions.reference.ifixit.dragger.modules.ApplicationModule;
+import com.living.solutions.reference.ifixit.dragger.modules.GeneralModule;
 import com.living.solutions.reference.ifixit.dragger.modules.IFixitNetModule;
 import com.living.solutions.reference.ifixit.dragger.modules.InterceptorModule;
 import com.living.solutions.reference.ifixit.dragger.modules.PresenterModule;
@@ -14,9 +15,10 @@ import dagger.Component;
  */
 @PerFragment
 @Component(modules = {PresenterModule.class,
-        ApplicationModule.class,
-        IFixitNetModule.class,
-        InterceptorModule.class})
+  ApplicationModule.class,
+  IFixitNetModule.class,
+  InterceptorModule.class,
+  GeneralModule.class})
 public interface IfixitComponent {
   void inject(MainActivity mainActivity);
 }

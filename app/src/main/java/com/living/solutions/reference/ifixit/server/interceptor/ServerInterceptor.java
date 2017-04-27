@@ -22,7 +22,7 @@ public class ServerInterceptor implements Interceptor {
 
     Request.Builder builder = original.newBuilder();
 
-    if (hostName.contains("themoviedb")) {
+    if (hostName.contains("ifixit.com")) {
       String newUrl = original.url().toString() /*+ "&api_key=" + BuildConfig.MOVIEDB_API*/;
       newRequest = builder.url(newUrl).build();
     }
