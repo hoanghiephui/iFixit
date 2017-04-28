@@ -9,4 +9,7 @@
   <string name="error_no_internet">No connection</string>
   <string name="error_no_server">Server error</string>
   <string name="erro_unexpected">Unexpected error</string>
+  <string name="label_mais">More ></string>
+  <string name="more">Read more</string>
+  <string name="progress_wait">Wait a moment</string>
 </resources>
